@@ -1,0 +1,47 @@
+org: saadmarwan16
+app: cognito-api
+service: base-api
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  environment:
+    NODE_ENV: ${param:NODE_ENV, ''}
+
+functions:
+  api:
+    handler: ./src/app.handler
+    events:
+      - httpApi:
+          path: /api
+          method: GET
+      - httpApi:
+          path: /api/{id}
+          method: GET
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+resources:
+  Resources:
+    UserPool:
+      Type: AWS::Cognito::UserPool
+      Properties:
+        UserPoolName: ${sls:stage}-${self:service}-user-pool
+        UsernameAttributes:
+          - email
+        AutoVerifiedAttributes:
+          - email
+    UserPoolClient:
+      Type: AWS::Cognito::UserPoolClient
+      Properties:
+        ClientName: ${sls:stage}-${self:service}-user-pool-client
+        GenerateSecret: false
+        UserPoolId:
+          Ref: UserPool
+        AccessTokenValidity: 5
+        IdTokenValidity: 5
+        ExplicitAuthFlows:
+          - 'ADMIN_NO_SRP_AUTH'

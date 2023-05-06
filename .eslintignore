@@ -1,0 +1,10 @@
+*.js
+*.cjs
+.env
+
+node_modules/
+.serverless/
+.temp/
+build/
+coverage/
+    
