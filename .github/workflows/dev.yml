@@ -6,7 +6,7 @@ on:
       - development
 
 jobs:
-  format:
+  development-build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -16,4 +16,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/prepare
+      - run: yarn run env
       - run: yarn deploy:dev
