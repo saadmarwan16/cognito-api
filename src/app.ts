@@ -25,6 +25,7 @@ app.use(json());
 // 	})
 // );
 
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
 app.use('/docs', serve, (_req: Request, res: Response) => {
 	return res.send(generateHTML(docs));
 });

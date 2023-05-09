@@ -1,0 +1,19 @@
+name: Deploy the code to the development stage
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/prepare
+      - run: yarn deploy:dev
