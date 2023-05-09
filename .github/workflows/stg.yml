@@ -6,7 +6,7 @@ on:
       - staging
 
 jobs:
-  format:
+  staging-build:
     runs-on: ubuntu-latest
 
     strategy:

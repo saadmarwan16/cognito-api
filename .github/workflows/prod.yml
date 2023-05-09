@@ -1,4 +1,4 @@
-name: Deploy the code to the development stage
+name: Deploy the code to the production stage
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  format:
+  production-build:
     runs-on: ubuntu-latest
 
     strategy:
