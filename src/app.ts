@@ -42,9 +42,3 @@ app.use((_err: Error, _req: Request, res: Response, _next: NextFunction) => {
 		message: 'Something really unexpected happened',
 	});
 });
-
-// npm i -g serverless && serverless \
-//     --org=saadmarwan16 \
-//     --app=auth0-tsoa \
-//     --name=auth0-tsoa \
-//     --template=aws-node-express-api
