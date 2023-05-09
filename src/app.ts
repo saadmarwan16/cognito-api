@@ -7,6 +7,16 @@ export const app = express();
 app.use(urlencoded({ extended: true }));
 app.use(json());
 
+// app.use(
+// 	'/docs',
+// 	serve,
+// 	setup(docs, {
+// 		customSiteTitle: 'Kuumba Documentation',
+// 		customfavIcon: 'url',
+// 		swaggerOptions: { validatorUrl: null },
+// 	})
+// );
+
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
 app.use('/docs', serve, async (_req: Request, res: Response) => {
 	return res.send(generateHTML(await import('../build/swagger.json')));
