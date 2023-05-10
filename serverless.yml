@@ -6,8 +6,6 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs18.x
-  environment:
-    NODE_ENV: ${param:NODE_ENV, ''}
 
 functions:
   api:
