@@ -17,6 +17,7 @@
         "lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
         "lint:fix": "eslint . --fix",
         "prepare": "husky install",
+        "ci": "yarn install --frozen-lockfile",
         "deploy:local": "serverless offline -s dev --reloadHandler",
         "deploy:dev": "serverless deploy --stage dev",
         "deploy:stg": "serverless deploy --stage stg",
