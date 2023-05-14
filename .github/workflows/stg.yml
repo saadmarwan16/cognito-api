@@ -21,7 +21,7 @@ jobs:
         cache: yarn
     - run: yarn ci
     - name: serverless deploy
-      uses: serverless/github-action@v3.2
+      uses: serverless/github-action@v3
       with:
         args: deploy --stage stg
       env:
