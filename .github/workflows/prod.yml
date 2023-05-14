@@ -3,17 +3,26 @@ name: Deploy the code to the production stage
 on:
   push:
     branches:
-      - main
+      - production
 
 jobs:
   production-build:
+    name: production-build
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [18.x]
-
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/prepare
-      - run: yarn deploy:prod
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: yarn
+    - run: yarn ci
+    - name: serverless deploy
+      uses: serverless/github-action@v3.2
+      with:
+        args: deploy
+      env:
+        SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
