@@ -6,13 +6,14 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs18.x
-  environment:
-    NODE_ENV: ${param:NODE_ENV, ''}
 
 functions:
   api:
     handler: src/index.handler
     events:
+      - httpApi:
+          path: /api-docs
+          method: GET
       - httpApi:
           path: /api
           method: GET
