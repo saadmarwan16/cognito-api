@@ -1,5 +1,3 @@
-org: saadmarwan16
-app: cognito-api
 service: base-api
 frameworkVersion: '3'
 
